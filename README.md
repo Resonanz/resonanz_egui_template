@@ -7,3 +7,6 @@
 
 ## Notes
 - Fonts are from fonts.google.com.
+
+## Template looks something like this:
+![image](https://github.com/user-attachments/assets/f033fb70-036d-4abb-98c3-4c7d153a04dd)
