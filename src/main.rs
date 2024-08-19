@@ -47,11 +47,11 @@ impl eframe::App for MyApp {
                 .clicked()
             {
                 thread::spawn(move || loop {
-                    println!("Hi from Ted the thread. I print every 1_000 ms.");
+                    println!("Hi from Ted the thread. I print to stdout every 1_000 ms.");
                     thread::sleep(Duration::from_millis(1_000));
                 });
             }
-            ui.add(egui::Button::new(egui::RichText::new("Hello I'm a bungee button").font(
+            ui.add(egui::Button::new(egui::RichText::new("Hello I'm a RichText bungee button").font(
                 FontId {
                     size: 30.,
                     family: FontFamily::Name("bungee".into()),

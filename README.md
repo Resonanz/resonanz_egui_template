@@ -1,5 +1,10 @@
-# resonanz_egui_template
+# Resonanz egui Template
 
-After cloning the template ```git clone template_url```, cd into the folder ```cd resonanz_egui_template``` and run using ```cargo run```.
+-- Clone: ```git clone template_url```
 
-Fonts are from fonts.google.com.
+-- cd into folder: ```cd resonanz_egui_template```
+
+-- Run: ```cargo run```
+
+## Notes
+-- Fonts are from fonts.google.com.
