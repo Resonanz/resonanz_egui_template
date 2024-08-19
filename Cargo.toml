@@ -1,0 +1,17 @@
+[package]
+name = "resonanz_egui_template"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.79"
+
+[dependencies]
+eframe = "0.28.1"
+
+# For image support:
+egui_extras = { version = "0.28.1", features = ["default", "all_loaders"] }
+
+# For logging
+env_logger = { version = "0.10", default-features = false, features = [
+    "auto-color",
+    "humantime",
+] }
