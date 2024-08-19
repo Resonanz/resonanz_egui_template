@@ -1,7 +1,9 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")] // hide console window on Windows in release
 
 use eframe::egui::{self, include_image, Color32, FontFamily, FontId, RichText, Vec2};
-mod helpers;
+use std::thread;
+use std::time::Duration;
+mod fonts;
 
 fn main() -> eframe::Result {
     env_logger::init(); // Log to stderr (if you run with `RUST_LOG=debug`).
@@ -25,7 +27,7 @@ struct MyApp {}
 
 impl MyApp {
     fn new(cc: &eframe::CreationContext<'_>) -> Self {
-        helpers::setup_custom_fonts(&cc.egui_ctx);
+        fonts::setup_custom_fonts(&cc.egui_ctx);
         Self {}
     }
 }
@@ -36,9 +38,25 @@ impl eframe::App for MyApp {
             ui.heading("I am default heading text");
             ui.label("I am default label text");
             ui.label(
-                RichText::new("I am default RichText proportional").font(FontId::proportional(40.)),
+                RichText::new("I am default RichText proportional size 40")
+                    .font(FontId::proportional(40.)),
             );
             ui.label(RichText::new("I am default RichText RED").color(Color32::RED));
+            if ui
+                .add(egui::Button::new("Spawn new thread").min_size(Vec2::new(120., 32.)))
+                .clicked()
+            {
+                thread::spawn(move || loop {
+                    println!("Hi from Ted the thread. I print every 1_000 ms.");
+                    thread::sleep(Duration::from_millis(1_000));
+                });
+            }
+            ui.add(egui::Button::new(egui::RichText::new("Hello I'm a bungee button").font(
+                FontId {
+                    size: 30.,
+                    family: FontFamily::Name("bungee".into()),
+                },
+            )));
             ui.label(
                 egui::RichText::new("I am Lora Italic")
                     .color(egui::Color32::YELLOW)
@@ -65,8 +83,9 @@ impl eframe::App for MyApp {
                     }),
             );
             // This image has defined size
-            ui.add(egui::Image::new(
-                include_image!("../assets/pics/ferris.png")).fit_to_exact_size(Vec2::new(50., 50.)),  
+            ui.add(
+                egui::Image::new(include_image!("../assets/pics/ferris.png"))
+                    .fit_to_exact_size(Vec2::new(50., 50.)),
             );
             // This image will scale to fit
             ui.image(egui::include_image!("../assets/pics/ferris.png"));
