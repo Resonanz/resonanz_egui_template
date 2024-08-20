@@ -23,10 +23,19 @@ fn main() -> eframe::Result {
     )
 }
 
-struct MyApp {}
+// A place to store our data
+pub struct MyApp {}
+
+impl Default for MyApp {
+    fn default() -> Self {
+        Self {}
+    }
+}
 
 impl MyApp {
+    // Called once before the first frame.
     fn new(cc: &eframe::CreationContext<'_>) -> Self {
+        // Load custom fonts
         fonts::setup_custom_fonts(&cc.egui_ctx);
         Self {}
     }
@@ -51,12 +60,12 @@ impl eframe::App for MyApp {
                     thread::sleep(Duration::from_millis(1_000));
                 });
             }
-            ui.add(egui::Button::new(egui::RichText::new("Hello I'm a RichText bungee button").font(
-                FontId {
+            ui.add(egui::Button::new(
+                egui::RichText::new("Hello I'm a RichText bungee button").font(FontId {
                     size: 30.,
                     family: FontFamily::Name("bungee".into()),
-                },
-            )));
+                }),
+            ));
             ui.label(
                 egui::RichText::new("I am Lora Italic")
                     .color(egui::Color32::YELLOW)
