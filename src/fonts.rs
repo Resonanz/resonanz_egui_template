@@ -5,7 +5,9 @@ use std::collections::BTreeMap;
 pub fn setup_custom_fonts(ctx: &egui::Context) {
     let mut fonts = FontDefinitions::default();
 
+    //
     // Load font =====================================
+    //
     fonts.font_data.insert(
         "lora".to_owned(),
         FontData::from_static(include_bytes!(
@@ -17,7 +19,9 @@ pub fn setup_custom_fonts(ctx: &egui::Context) {
     newfam.insert(FontFamily::Name("lora".into()), vec!["lora".to_owned()]);
     fonts.families.append(&mut newfam);
 
+    //
     // Load font =====================================
+    //
     fonts.font_data.insert(
         "bungee".to_owned(),
         FontData::from_static(include_bytes!("../assets/fonts/BungeeTint-Regular.ttf")),
@@ -27,7 +31,9 @@ pub fn setup_custom_fonts(ctx: &egui::Context) {
     newfam.insert(FontFamily::Name("bungee".into()), vec!["bungee".to_owned()]);
     fonts.families.append(&mut newfam);
 
+    //
     // Load font =====================================
+    //
     fonts.font_data.insert(
         "seven_seg".to_owned(),
         FontData::from_static(include_bytes!(
@@ -42,6 +48,8 @@ pub fn setup_custom_fonts(ctx: &egui::Context) {
     );
     fonts.families.append(&mut newfam);
 
+    //
     // Set fonts =====================================
+    //
     ctx.set_fonts(fonts);
 }
