@@ -60,8 +60,12 @@ impl eframe::App for MyApp {
                 .clicked()
             {
                 thread::spawn(move || loop {
-                    println!("Hi from Ted the thread. I print to stdout every 1_000 ms.");
-                    thread::sleep(Duration::from_millis(1_000));
+                    let mut count: u32 = 0;
+                    loop {
+                        println!("Hi from Ted the thread. I print to stdout every 1_000 ms. Print count = {count}.");
+                        count += 1;
+                        thread::sleep(Duration::from_millis(1_000));
+                        }
                 });
             }
             ui.add(egui::Button::new(
